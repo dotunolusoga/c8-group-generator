@@ -1,4 +1,4 @@
-getJSON('https://yspuku7qvh9u4cr3.firebaseio.com/.json', function(res){
+$.get('https://yspuku7qvh9u4cr3.firebaseio.com/.json', function(res){
   var data = res['c8-students'];
   var $ul = $('ul');
 
@@ -27,20 +27,5 @@ function createList(array) {
     groupList.push($ol);
   })
   return groupList;
-}
-
-
-
-
-
-function getJSON(url, cb) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', url);
-  xhr.onload = function () {
-    if (this.status >= 200 && this.status < 400) {
-      cb(JSON.parse(this.response));
-    }
-  };
-  xhr.send()
 }
 
