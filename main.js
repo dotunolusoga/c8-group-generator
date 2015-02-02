@@ -1,5 +1,6 @@
 getJSON('https://yspuku7qvh9u4cr3.firebaseio.com/.json', function(res){
   var data = res['c8-students'];
+  var $ul = $('ul');
 
   console.log(_.VERSION);
 
@@ -9,24 +10,23 @@ getJSON('https://yspuku7qvh9u4cr3.firebaseio.com/.json', function(res){
   .shuffle()
   .chunk(4)
   .value();
-  var ul = document.querySelector('ul');
-  ul.appendChild(createList(chunkedStudents));
+  var $ul = $('ul');
+  $ul.append(createList(chunkedStudents));
 });
 
 function createList(array) {
-  var docFragment = document.createDocumentFragment();
+  var groupList = [];
 
   _.forEach(array, function(team){
-    var ol = document.createElement('ol');
+    var $ol = $('<ol></ol>');
+
     _.forEach(team, function(teamMember){
-      var li = document.createElement('li');
-      var text = document.createTextNode(teamMember);
-      li.appendChild(text);
-      ol.appendChild(li);
+      var $li = $('<li>' + teamMember + '</li>');
+      $ol.append($li);
     })
-    docFragment.appendChild(ol);
+    groupList.push($ol);
   })
-  return docFragment;
+  return groupList;
 }
 
 
